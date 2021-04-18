@@ -1,9 +1,8 @@
 #pragma once
-#include <string>
 #include <iostream>
+#include <string>
 #include <vector>
 #include <typeinfo>
-#include<array>
 #include "Category.h"
 
 using namespace std;
@@ -11,8 +10,8 @@ using namespace std;
 class Course {
 private:
 	string courseName;
-	double courseGrade;
-	vector<Category*> categories;
+	double courseGrade, totalCategoryWeight;
+	vector<Category> categories;
 public:
 	//Constructors
 	Course();
@@ -20,9 +19,12 @@ public:
 	//Setters
 	void setCourseName(string name);
 	void setCourseGrade();
-	void setAddCategory();
+	void setTotalCategoryWeight();
+	void addCategory();
 	//Getters
 	string getCourseName();
 	double getCourseGrade();
 	double getTotalCategoryWeight();
+	int getCategoriesSize();
+	vector<Category> getCategoriesVector();
 };

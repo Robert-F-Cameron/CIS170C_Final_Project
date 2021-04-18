@@ -10,7 +10,7 @@ using namespace std;
 class Category {
 private:
 	string categoryName;
-	double categoryWeight, categoryGrade;
+	double categoryWeight, categoryGrade, categoryWeightedGrade;
 	int numAssignments;
 	vector<double> assignmentGrades;
 public:
@@ -20,6 +20,7 @@ public:
 	//Setters
 	void setCategoryName(string name);
 	void setCategoryWeight(double weight);
+	void setCategoryWeightedGrade();
 	void setCategoryGrade();
 	void setNumAssignments(int numAssignments);
 	void setAddAssignmentGrade();
@@ -28,5 +29,5 @@ public:
 	double getCategoryWeight();
 	double getCategoryGrade();
 	int getNumAssignments();
-	vector<int> getAssignmentGrades();
+	void getAssignmentGrades();
 };

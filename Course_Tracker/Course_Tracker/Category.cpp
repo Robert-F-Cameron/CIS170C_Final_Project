@@ -5,7 +5,7 @@ using namespace std;
 //Default Constructor
 Category::Category() {
 	categoryName = "Default Category";
-	categoryGrade = 0;
+	categoryWeightedGrade = 0;
 	categoryWeight = 0;
 	numAssignments = 0;
 }
@@ -13,7 +13,7 @@ Category::Category() {
 Category::Category(string name, double weight, int assignments) {
 	categoryName = name;
 	categoryGrade = 0;
-	categoryWeight = weight;
+	categoryWeight = weight*0.01;
 	numAssignments = assignments;
 }
 //Setters
@@ -23,12 +23,18 @@ void Category::setCategoryName(string name) {
 void Category::setCategoryWeight(double weight) {
 	categoryWeight = weight*0.01;
 };
-void Category::setCategoryGrade() {
-	double grade;
-	for (unsigned int i; i < assignmentGrades.size(); i++) {
+void Category::setCategoryWeightedGrade() {
+	double grade{};
+	for (unsigned int i{}; i < assignmentGrades.size(); i++) {
 		grade += assignmentGrades[i];
 	}
-	categoryGrade = grade * categoryWeight;
+	categoryWeightedGrade = grade * categoryWeight;
+};void Category::setCategoryGrade() {
+	double grade{};
+	for (unsigned int i{}; i < assignmentGrades.size(); i++) {
+		grade += assignmentGrades[i];
+	}
+	categoryWeightedGrade = grade;
 };
 void Category::setNumAssignments(int numAssignments) {
 };
@@ -52,5 +58,12 @@ double Category::getCategoryWeight() {
 double Category::getCategoryGrade() {
 	return categoryGrade;
 };
-int Category::getNumAssignments();
-vector<int> Category::getAssignmentGrades();
+int Category::getNumAssignments() {
+	return numAssignments;
+};
+void Category::getAssignmentGrades() {
+	for (unsigned int i{}; i < assignmentGrades.size(); i++) {
+		cout << "Assignment " << i << ": " << assignmentGrades[i] << " | ";
+	}
+	cout << endl;
+};
