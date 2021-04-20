@@ -21,6 +21,7 @@ public:
 	void setCourseGrade();
 	void setTotalCategoryWeight();
 	void addCategory();
+	void addCategoryObj(Category category);
 	//Getters
 	string getCourseName();
 	double getCourseGrade();

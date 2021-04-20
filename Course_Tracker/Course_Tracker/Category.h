@@ -16,12 +16,14 @@ private:
 public:
 	//Constructors
 	Category();
-	Category(string name, double categoryWeight, int numAssignments);
+	Category(string name, float categoryWeight, int numAssignments);
 	//Setters
 	void setCategoryName(string name);
-	void setCategoryWeight(double weight);
-	void setCategoryWeightedGrade();
-	void setCategoryGrade();
+	void setCategoryWeight(float weight);
+	void setCategoryWeightedGrade(double grade);
+	void calculateCategoryWeightedGrade();
+	void setCategoryGrade(double grade);
+	void calculateCategoryGrade();
 	void setNumAssignments(int numAssignments);
 	void setAddAssignmentGrade();
 	//Getters

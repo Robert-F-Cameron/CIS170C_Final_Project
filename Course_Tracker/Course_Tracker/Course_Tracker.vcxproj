@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="Category.h" />
     <ClInclude Include="Course.h" />
+    <ClInclude Include="TextTable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Category.cpp" />

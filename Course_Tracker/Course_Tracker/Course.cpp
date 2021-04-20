@@ -9,12 +9,13 @@ Course::Course() {
 };
 Course::Course(string name) {
 	courseName = name;
+	courseGrade = 0;
 };
 //Setters
 void Course::addCategory() {
 	//variables
 	string name;
-	double categoryWeight;
+	float categoryWeight;
 	int numAssignments;
 	//logic
 	if (totalCategoryWeight < 1) {
@@ -50,7 +51,6 @@ void Course::addCategory() {
 		else if (totalCategoryWeight == 1) {
 			cout << name << " added!" << "100% grade weight allocated." << endl;
 		}
-		cout << "--" << endl;
 	}
 };
 void Course::setCourseName(string name) {
@@ -69,6 +69,9 @@ void Course::setTotalCategoryWeight() {
 		categoryWeight += categories[i].getCategoryWeight();
 	}
 	totalCategoryWeight = categoryWeight;
+};
+void Course::addCategoryObj(Category category) {
+	categories.push_back(category);
 };
 //Getters
 string Course::getCourseName() {
