@@ -57,18 +57,26 @@ void Course::setCourseName(string name) {
 	courseName = name;
 };
 void Course::setCourseGrade() {
-	double grade{};
+	double grade{}, gradedCategories{};
 	for (unsigned int i{}; i < categories.size(); i++) {
-		grade += categories[i].getCategoryGrade();
+		vector<double> submittedGrades = categories[i].getSubmittedAssignmentGrades();
+		if (submittedGrades.size() > 0) {
+			grade += categories[i].getCategoryGrade();
+			gradedCategories++;
+		};
 	};
-	courseGrade = grade / categories.size();
+	courseGrade = grade / gradedCategories;
 };
 void Course::setCourseWeightedGrade() {
-	double grade{};
-		for (unsigned int i{}; i < categories.size(); i++) {
+	double grade{}, gradedCategories{};
+	for (unsigned int i{}; i < categories.size(); i++) {
+		vector<double> submittedGrades = categories[i].getSubmittedAssignmentGrades();
+		if (submittedGrades.size() > 0) {
 			grade += categories[i].getCategoryWeightedGrade();
+			gradedCategories++;
 		};
-		courseWeightedGrade = grade / categories.size();
+	};
+	courseWeightedGrade = grade / gradedCategories;
 };
 void Course::setTotalCategoryWeight() {
 	double categoryWeight{};
@@ -100,17 +108,14 @@ vector<Category> Course::getCategoriesVector() {
 	return categories;
 };
 //menu
-void Course::courseMenu() {
+void Course::courseMenuTable() {
 	TextTable t('-', '|', '+');
-	bool courseMenu = true;
-	char selection, input;
-	int categorySelection = 0;
 	t.add("Selection");
 	t.add("Category Name");
 	t.add("Category Weight");
 	t.add("Category Grade");
-	t.add("Number of category assignments");
-	t.add("Number of assignments submitted");
+	t.add("Number of Assignments");
+	t.add("Assignments submitted");
 	t.endOfRow();
 	for (unsigned int i{}; i < categories.size(); i++) {
 		t.add(to_string(i + 1));
@@ -123,9 +128,15 @@ void Course::courseMenu() {
 	}
 	t.setAlignment(2, TextTable::Alignment::RIGHT);
 	cout << t;
+};
+void Course::courseMenu() {
+	bool courseMenu = true;
+	char selection, input;
+	int categorySelection = 0;
 	do {
+		courseMenuTable();
 		cout << "Select a category to view" << endl;
-		cout << "or 'q' to return to main menu:";
+		cout << "or 'q' to return to Course List:";
 		cin >> input;
 		cin.clear();
 		cin.ignore(1024, '\n');
@@ -145,9 +156,9 @@ void Course::courseMenu() {
 			categories[num].categoryMenu();
 			getCourseWeightedGrade();
 			getCourseGrade();
-			courseMenu = false;
 			break;
 		case 'q':
+			cout << "Retruning to course list..." << endl << endl;
 			courseMenu = false;
 			break;
 		default:

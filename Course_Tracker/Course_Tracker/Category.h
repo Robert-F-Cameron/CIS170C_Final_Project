@@ -4,6 +4,7 @@
 #include <vector>
 #include <typeinfo>
 #include<array>
+#include "TextTable.h"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ public:
 	Category();
 	Category(string name, float categoryWeight, int numAssignments);
 	Category(string name, float categoryWeight, double weightedGrade, double grade, int numAssignments);
+	Category(string name, float categoryWeight, double weightedGrade, double grade, int numAssignments, vector<double> assignments);
 	//Setters
 	void setCategoryName(string name);
 	void setCategoryWeight(float weight);
@@ -35,6 +37,8 @@ public:
 	int getNumAssignments();
 	void getAssignmentGrades();
 	int getNumAssignmentsSubmitted();
+	vector<double> getSubmittedAssignmentGrades();
 	//Category Menu
+	void categoryMenuTable();
 	void categoryMenu();
 };

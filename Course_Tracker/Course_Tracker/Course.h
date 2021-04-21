@@ -32,5 +32,6 @@ public:
 	int getCategoriesSize();
 	vector<Category> getCategoriesVector();
 	//menu
+	void courseMenuTable();
 	void courseMenu();
 };

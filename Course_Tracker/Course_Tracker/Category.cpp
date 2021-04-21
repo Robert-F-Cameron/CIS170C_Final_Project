@@ -21,8 +21,16 @@ Category::Category(string name, float weight, double weightedGrade, double grade
 	categoryName = name;
 	categoryGrade = grade;
 	categoryWeightedGrade = weightedGrade;
-	categoryWeight = weight * 0.01;
+	categoryWeight = weight;
 	numAssignments = assignments;
+}
+Category::Category(string name, float weight, double weightedGrade, double grade, int assignments, vector<double> submittedAssignments) {
+	categoryName = name;
+	categoryGrade = grade;
+	categoryWeightedGrade = weightedGrade;
+	categoryWeight = weight;
+	numAssignments = assignments;
+	assignmentGrades = submittedAssignments;
 }
 //Setters
 void Category::setCategoryName(string name) {
@@ -62,10 +70,16 @@ void Category::setAddAssignmentGrade() {
 		cin >> grade;
 		cin.clear();
 		cin.ignore(1024, '\n');
-		assignmentGrades.push_back(grade);
+		if (grade > 100) {
+			cout << "Grade cannot be over 100!" << endl;
+			setAddAssignmentGrade();
+		}
+		else {
+			assignmentGrades.push_back(grade);
+		};
 	}
 	else {
-		cout << "All Assignments Submitted!";
+		cout << "All Assignments Submitted!" << endl;
 	}
 };
 //Getters
@@ -92,21 +106,42 @@ void Category::getAssignmentGrades() {
 };
 int Category::getNumAssignmentsSubmitted() {
 	return assignmentGrades.size();
-}
+};
+vector<double> Category::getSubmittedAssignmentGrades() {
+	return assignmentGrades;
+};
 //Category Menu
+void Category::categoryMenuTable() {
+	TextTable t('-', '|', '+');
+	t.add("Category Name");
+	t.add("Category Weight");
+	t.add("Category Grade");
+	t.add("Number of category assignments");
+	t.add("Number of assignments submitted");
+	t.endOfRow();
+	t.add(getCategoryName());
+	t.add(to_string(getCategoryWeight()));
+	t.add(to_string(getCategoryGrade()));
+	t.add(to_string(getNumAssignments()));
+	t.add(to_string(getNumAssignmentsSubmitted()));
+	t.endOfRow();
+	t.setAlignment(2, TextTable::Alignment::RIGHT);
+	cout << t;
+};
 void Category::categoryMenu() {
 	bool categoryMenu = true;
+	categoryMenuTable();
+	do {
+		int categoryInput{}, number{};
+		float weight{};
+		string name{};
 		cout << getCategoryName() << " Menu:" << endl;
 		cout << "1) Add assignment grade" << endl
 			<< "2) Update category name" << endl
 			<< "3) Update category weight" << endl
 			<< "4) Update category number of category assignments" << endl
 			<< "5) Return to course menu" << endl;
-	do {
-		int categoryInput{}, number{};
-		float weight{};
-		string name{};
-			cout << "Selection: ";
+		cout << "Selection: ";
 		cin >> categoryInput;
 		cin.clear();
 		cin.ignore(1024, '\n');
@@ -115,13 +150,13 @@ void Category::categoryMenu() {
 			setAddAssignmentGrade();
 			calculateCategoryGrade();
 			calculateCategoryWeightedGrade();
+			categoryMenuTable();
 			break;
 		case 2:
 			cout << "Input updated category name: ";
-			cin >> name;
-			cin.clear();
-			cin.ignore(1024, '\n');
+			getline(cin, name);
 			setCategoryName(name);
+			categoryMenuTable();
 			break;
 		case 3:
 			cout << "Input updated category name: ";
@@ -129,6 +164,7 @@ void Category::categoryMenu() {
 			cin.clear();
 			cin.ignore(1024, '\n');
 			setCategoryWeight(weight);
+			categoryMenuTable();
 			break;
 		case 4:
 			cout << "Input updated category name: ";
@@ -136,8 +172,10 @@ void Category::categoryMenu() {
 			cin.clear();
 			cin.ignore(1024, '\n');
 			setNumAssignments(number);
+			categoryMenuTable();
 			break;
 		case 5:
+			cout << "Returning to course menu..." << endl << endl;
 			categoryMenu = false;
 			break;
 		default:
