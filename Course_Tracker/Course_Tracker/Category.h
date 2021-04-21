@@ -17,6 +17,7 @@ public:
 	//Constructors
 	Category();
 	Category(string name, float categoryWeight, int numAssignments);
+	Category(string name, float categoryWeight, double weightedGrade, double grade, int numAssignments);
 	//Setters
 	void setCategoryName(string name);
 	void setCategoryWeight(float weight);
@@ -30,6 +31,10 @@ public:
 	string getCategoryName();
 	double getCategoryWeight();
 	double getCategoryGrade();
+	double getCategoryWeightedGrade();
 	int getNumAssignments();
 	void getAssignmentGrades();
+	int getNumAssignmentsSubmitted();
+	//Category Menu
+	void categoryMenu();
 };

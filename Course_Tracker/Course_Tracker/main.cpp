@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
 #include "Course.h"
 #include "Category.h"
 #include "TextTable.h"
@@ -72,16 +73,17 @@ void viewCourses() {
 	TextTable t('-', '|', '+');
 	bool courseList = true;
 	char selection, input;
-	int courseSelection;
 	t.add("Selection");
 	t.add("Course Name");
 	t.add("Course Grade");
+	t.add("Weighted Course Grade");
 	t.add("Number of Course Categories");
 	t.endOfRow();
 	for (unsigned int i{}; i < courses.size(); i++) {
 		t.add(to_string(i + 1));
 		t.add(courses[i].getCourseName());
 		t.add(to_string(courses[i].getCourseGrade()));
+		t.add(to_string(courses[i].getCourseWeightedGrade()));
 		t.add(to_string(courses[i].getCategoriesSize()));
 		t.endOfRow();
 	};
@@ -91,21 +93,24 @@ void viewCourses() {
 		cout << "Select a course to view" << endl;
 		cout << "or 'q' to return to main menu:";
 		cin >> input;
-		int num = input - 49;
-		courseSelection = (num - 1);
+		cin.clear();
+		cin.ignore(1024, '\n');
+		int num = (input - 49);
 		int numCourses = courses.size();
 		if (input == 'q') {
 			selection = 'q';
 		}
 		else if (num <= numCourses) {
-			selection = 1;
+			selection = '1';
 		}
 		else {
 			selection = input;
 		}
 		switch (selection) {
 		case '1':
-			courses[courseSelection].getCourseName();
+			courses[num].courseMenu();
+			courses[num].setCourseGrade();
+			courseList = false;
 			break;
 		case 'q':
 			courseList = false;
@@ -122,15 +127,15 @@ void writeToFile() {
 	course_data.open("courses.csv");
 	if (course_data.is_open()) {
 		for (unsigned int i{}; i < courses.size(); i++) {
-			string type = "course";
 			vector<Category> categories = courses[i].getCategoriesVector();
-			course_data << type << ",";
+			course_data << "course" << ",";
 			course_data << courses[i].getCourseName() << endl;
 			for (unsigned int i{}; i < categories.size(); i++) {
-				string type = "category";
-				course_data << type << ",";
+				course_data << "category" << ",";
 				course_data << categories[i].getCategoryName() << ",";
 				course_data << categories[i].getCategoryWeight() << ",";
+				course_data << categories[i].getCategoryWeightedGrade() << ",";
+				course_data << categories[i].getCategoryGrade() << ",";
 				course_data << categories[i].getNumAssignments() << endl;
 			};
 		};
@@ -140,11 +145,10 @@ void writeToFile() {
 void readFile() {
 	string type, courseName, categoryName;
 	int numAssignments;
-	float categoryWeight;
-	string ADDRESS_FILE_NAME = "courses.csv";
-	ifstream input_data(ADDRESS_FILE_NAME);
-	input_data.open("courses.csv");
+	double categoryWeight, categoryWeightedGrade, categoryGrade;
+	ifstream input_data("course.csv");
 	if (input_data.is_open()) {
+		cout << "open";
 		while (getline(input_data, type, ',')) {
 			if (type == "course") {
 				getline(input_data, courseName, '\n');
@@ -154,8 +158,10 @@ void readFile() {
 			else if (type == "category") {
 				getline(input_data, categoryName, ',');
 				input_data >> categoryWeight;
+				input_data >> categoryWeightedGrade;
+				input_data >> categoryGrade;
 				input_data >> numAssignments;
-				Category courseCategory(categoryName, categoryWeight, numAssignments);
+				Category courseCategory(categoryName, categoryWeight, categoryWeightedGrade, categoryGrade, numAssignments);
 				courses[courses.size() - 1].addCategoryObj(courseCategory);
 			}
 		};

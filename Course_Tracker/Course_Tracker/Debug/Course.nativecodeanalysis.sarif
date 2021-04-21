@@ -1,0 +1,103 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '+' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '+' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/rober/Desktop/DeVry Course Work/CIS170C/Final Project/Course_Tracker/Course_Tracker/TextTable.h"
+                },
+                "region": {
+                  "startLine": 208,
+                  "startColumn": 24,
+                  "endLine": 208,
+                  "endColumn": 68
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??6@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AAV01@ABVTextTable@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "suppressions": []
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.28.29910.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.28.29910\\bin\\HostX86\\x86\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x0088B1C0 -il C:\\Users\\rober\\AppData\\Local\\Temp\\_CL_afa45d86ast -typedil -f Course.cpp -Ze -D_MSC_EXTENSIONS -Zp8 -Gs -pc \\:/ -D_MSC_VER=1928 -D_MSC_FULL_VER=192829910 -D_MSC_BUILD=0 -D_WIN32 -D_M_IX86=600 -D_M_IX86_FP=2 -GR -D_CPPRTTI -nologo -W 3 -diagnostics:column -D_GUARDOVERFLOW_CRT_ALLOCATORS=1 -Ot -DCODE_ANALYSIS -DWIN32 -D_DEBUG -D_CONSOLE -D_UNICODE -DUNICODE -EHs -D_CPPUNWIND -EHc -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -MDd -D_DEBUG -D_MT -D_DLL -GS -D_M_FP_PRECISE -permissive- -Zc:wchar_t -Zc:forScope -FoDebug\\Course.obj -FdDebug\\vc142.pdb -Gd -analyze:projectdirectory C:\\Users\\rober\\Desktop\\DeVry Course Work\\CIS170C\\Final Project\\Course_Tracker\\Course_Tracker -analyze:rulesetdirectory ;C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.28.29910\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.28.29910\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.28.29910\\atlmfc\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Users\\rober\\Desktop\\DeVry Course Work\\CIS170C\\Final Project\\Course_Tracker\\Course_Tracker\\Include\\um",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/rober/Desktop/DeVry Course Work/CIS170C/Final Project/Course_Tracker/Course_Tracker/TextTable.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "c974f235ecea7f16948ba12a90c425cd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/rober/desktop/devry course work/cis170c/final project/course_tracker/course_tracker/main.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "b5d64721f9ba92109b7f2b958a793ffb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/rober/desktop/devry course work/cis170c/final project/course_tracker/course_tracker/course.h"
+          },
+          "hashes": {
+            "md5": "a15af97a8529e0bc79ecc239a5f11200"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/rober/desktop/devry course work/cis170c/final project/course_tracker/course_tracker/category.h"
+          },
+          "hashes": {
+            "md5": "9dc0735104fd4e8aee5fcc84385a5c50"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/rober/desktop/devry course work/cis170c/final project/course_tracker/course_tracker/course.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "09cea6c8209a15e486ee74f7d52e877a"
+          }
+        }
+      ]
+    }
+  ]
+}

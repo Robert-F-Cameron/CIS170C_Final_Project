@@ -4,13 +4,14 @@
 #include <vector>
 #include <typeinfo>
 #include "Category.h"
+#include "TextTable.h"
 
 using namespace std;
 
 class Course {
 private:
 	string courseName;
-	double courseGrade, totalCategoryWeight;
+	double courseGrade, courseWeightedGrade, totalCategoryWeight;
 	vector<Category> categories;
 public:
 	//Constructors
@@ -19,13 +20,17 @@ public:
 	//Setters
 	void setCourseName(string name);
 	void setCourseGrade();
+	void setCourseWeightedGrade();
 	void setTotalCategoryWeight();
 	void addCategory();
 	void addCategoryObj(Category category);
 	//Getters
 	string getCourseName();
 	double getCourseGrade();
+	double getCourseWeightedGrade();
 	double getTotalCategoryWeight();
 	int getCategoriesSize();
 	vector<Category> getCategoriesVector();
+	//menu
+	void courseMenu();
 };
