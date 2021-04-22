@@ -1,7 +1,3 @@
-﻿  Category.cpp
-C:\Users\rober\Desktop\DeVry Course Work\CIS170C\Final Project\Course_Tracker\Course_Tracker\Category.cpp(68,30): warning C4018: '<': signed/unsigned mismatch
-  Course.cpp
-  main.cpp
-C:\Users\rober\Desktop\DeVry Course Work\CIS170C\Final Project\Course_Tracker\Course_Tracker\main.cpp(182,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
+﻿  main.cpp
+C:\Users\rober\Desktop\DeVry Course Work\CIS170C\Final Project\Course_Tracker\Course_Tracker\main.cpp(187,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Course_Tracker.vcxproj -> C:\Users\rober\Desktop\DeVry Course Work\CIS170C\Final Project\Course_Tracker\Debug\Course_Tracker.exe

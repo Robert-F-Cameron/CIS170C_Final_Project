@@ -162,8 +162,7 @@ void Course::courseMenu() {
 			courseMenu = false;
 			break;
 		default:
-			cout << num;
-			cout << "Not a valid input";
+			cout << "\x1B[31mNot a valid input!\033[0m" << endl;
 		}
 	} while (courseMenu);
 };

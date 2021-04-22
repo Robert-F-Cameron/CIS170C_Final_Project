@@ -49,11 +49,11 @@ int main() {
 			system("pause");
 			break;
 		default:
-			cout << "Not a valid input!" << endl;
+			cout << "\x1B[31mNot a valid input!\033[0m" << endl;
 		}
 	} while (input != 'q');
 }
-
+//Creates a course to track
 void createCourse() {
 	string name;
 	double courseWeight;
@@ -61,7 +61,7 @@ void createCourse() {
 	getline(cin, name);
 	selectedCourse = Course(name);
 	do {
-		cout << "Add grading category." << endl;
+		cout << "\x1B[36mAdd grading category.\033[0m" << endl;
 		selectedCourse.addCategory();
 		courseWeight = selectedCourse.getTotalCategoryWeight();
 	} while (courseWeight < 1);
@@ -69,6 +69,7 @@ void createCourse() {
 	cout << selectedCourse.getCourseName() << " added!" << endl;
 	return;
 };
+//Outputs the course list as a table
 void courseListTable() {
 	TextTable t('-', '|', '+');
 	t.add("Selection");
@@ -88,6 +89,7 @@ void courseListTable() {
 	t.setAlignment(2, TextTable::Alignment::RIGHT);
 	cout << t;
 };
+//Allows the user to select a course to view
 void viewCourses() {
 	bool courseList = true;
 	char selection, input;
@@ -120,11 +122,12 @@ void viewCourses() {
 			courseList = false;
 			break;
 		default:
-			cout << "Not a valid input";
+			cout << "\x1B[31mNot a valid input!\033[0m" << endl;
 		}
 	} while (courseList);
 };
-
+//Writes the courses and their grading categories to a CSV file
+//TODO: write the course category grades to the file
 void writeToFile() {
 	ofstream course_data;
 	course_data.open("courses.csv");
@@ -156,6 +159,8 @@ void writeToFile() {
 	};
 	course_data.close();
 };
+//Reads the CSV file and creates the courses and their associated categories
+//TODO: read category assignemnt grades 
 void readFile() {
 	string type, courseName, categoryName, numAssignments, categoryWeight, categoryWeightedGrade, categoryGrade;
 	ifstream input_data("courses.csv");

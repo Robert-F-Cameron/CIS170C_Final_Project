@@ -179,7 +179,7 @@ void Category::categoryMenu() {
 			categoryMenu = false;
 			break;
 		default:
-			cout << "Not a valid input." << endl;
+			cout << "\x1B[31mNot a valid input!\033[0m" << endl;
 			break;
 		};
 	} while (categoryMenu);
